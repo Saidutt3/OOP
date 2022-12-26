@@ -1,0 +1,90 @@
+#include<iostream>
+#include<fstream>
+#include<string.h>
+using namespace std;
+class student
+{
+	private:
+	string name;
+	int rollno;
+	int mark;
+	public:
+		void getdata()
+		{
+			ofstream o2;
+			o2.open("file.txt",ios::app);
+			
+			if(o2.fail())
+			cout<<"Problem in file creation";
+			else
+			{
+									
+			cout<<"enter name of student";
+			cin>>name;
+			cout<<"enter roll no.";
+			cin>>rollno;
+			
+			cout<<"enter mark";
+			cin>>mark;
+			
+			o2<<rollno;
+			o2<<"       ";
+			o2<<name;
+			o2<<"     ";
+			o2<<mark;
+			o2<<"\n";
+			o2.close();
+		}
+	}
+	void display()
+	{
+	    ifstream i1;
+	    i1.open("file.txt");
+	    if(i1.fail())
+	    cout<<"error in reading file";
+	    else
+	    {
+	       while(!i1.eof())
+	      // while(i1>>rollno>>name>>mark)
+	        {
+	            i1>>rollno;
+	          i1>>name;
+	           i1>>mark;
+	            cout<<"Roll "<<rollno<<" \n";
+	            cout<<"Name "<<name<<" \n";
+	            cout<<"Marks"<<mark<<" \n";
+	            cout<<"\n";
+	        }
+	    }
+	}
+	};
+int main()
+{
+
+	student s1;
+	int ch;
+	do
+	{
+	    cout<<"\n Student database:";
+	    cout<<"\n Menu";
+	    cout<<"\n 1. Add student record";
+	    cout<<"\n 2. Display student record";
+	    cout<<"\n 3. Exit";
+	    cout<<"\n Enter your choice";
+	    cin>>ch;
+	    switch(ch)
+	    {
+	        case 1:
+	        s1.getdata();
+	        break;
+	        case 2:
+	        s1.display();
+	        break;
+	        case 3:
+	        exit(0);
+	    }
+	}while(ch!=3);
+	
+	        
+return 0;
+}
